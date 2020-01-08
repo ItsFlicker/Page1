@@ -4,16 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
     <meta name="author" content="wlys">
-    <title>feedback</title>
-    <link rel="stylesheet" href="style1.css">
+    <title>wlys—视频</title>
+    <link rel="stylesheet" href="css/style1.css">
+    <link rel="shortcut icon" href="img/favicon.ico">
     <style>
         body {
             background-image: url("img/bg.jpg");
             background-repeat: no-repeat;
         }
+        section {
+            margin-left: 2%;
+        }
     </style>
-    <script src="jquery-3.4.1.js"></script>
-    <script src="MerryChristmas.js"></script>
+    <script src="js/jquery-3.4.1.js"></script>
+    <script src="js/MerryChristmas.js"></script>
+    <script src="js/Eggs.js"></script>
 </head>
 <body>
 <header>
@@ -21,11 +26,17 @@
         <li class="dh"><a href="index.html" >主页</a></li>
         <li class="dh"><a href="programs.html" >小程序</a></li>
         <li class="dh"><a href="download.html" >下载</a></li>
-        <li class="dh"><a href="feedback.html" >反馈</a></li>
+        <li class="dh"><a href="feedback.html" >视频</a></li>
     </ul>
 </header>
-<section>
-    <h2>Coming Soon!</h2>
+<section class="">
+    <p class="fd">推荐html5教程:（必要时请关弹幕,推荐去官网观看）</p>
+        <p id="text" class="fd">当前是第1节</p>
+        <button id="lastP">上一节</button>
+        <button id="nextP">下一节</button>
+        <br/>
+        <iframe id="video" src="https://player.bilibili.com/player.html?aid=48489320&cid=84920721&page=1" width="750px" height="500px" frameborder="0" allowfullscreen></iframe>
 </section>
+    <script src="js/htmlvideo.js"></script>
 </body>
 </html>
