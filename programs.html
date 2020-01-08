@@ -6,7 +6,6 @@
     <meta name="author" content="wlys">
     <title>小程序</title>
     <link rel="stylesheet" href="style1.css">
-    <script src="zs.js"></script>
     <noscript><p style="font-size: 150%">警告:检测到您的浏览器关闭了JavaScript,部分功能可能无法正常使用!</p></noscript>
     <style>
         body {
@@ -30,13 +29,12 @@
     </ul>
 </header>
 <section>
-    <h2>质数判断</h2>
-    <form name="zs" onsubmit="return zspd()" method="get">
-        <label>
-            <input type="number" name="zssr">
-        </label>
-        <button type="submit">判断</button>
-    </form>
+    <h4 class="fd">质数判断:</h4>
+    <p class="bold">
+        <input type="number" id="zssr">
+    </p>
+    <p class="fd" id="zsjg">结果:</p>
 </section>
+<script src="program.js"></script>
 </body>
 </html>
