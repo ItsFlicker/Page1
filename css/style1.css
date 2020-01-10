@@ -1,7 +1,3 @@
-body {
-
- }
-
 ul{
     list-style-type: none;
     padding : 0;
@@ -52,14 +48,17 @@ footer {
 
 section {
     margin-left: 0;
-    flex-wrap: warp;
+    flex-wrap: wrap;
 }
 
 .download {
     color: white;
     background: lawngreen;
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    display: inline-block;
+    border-radius: 3px;
 }
 
 header ul {
