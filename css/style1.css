@@ -6,7 +6,7 @@ ul{
 li{
     display: inline;
     margin-left: 20px;
-    border-radius: 5px;
+    border-radius: 3px;
     padding: 2px;
 
 }
@@ -28,12 +28,23 @@ header .mobile {
     display: none;
 }
 
-@media screen and (max-width: 420px){
-    header .mobile {
-        display: inline-block;
+@media screen and (max-width: 421px){
+    body {
+        font-size: 90%;
     }
-    header .desktop {
-        display: none;
+    header li {
+        padding: 0;
+        display: inline-block;
+        margin: 0;
+        flex-wrap: nowrap;
+    }
+    #video {
+        width: 95%;
+        height:240px;
+    }
+    #qrwindow {
+        width: 95%;
+        height:240px;
     }
 }
 
