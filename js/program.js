@@ -21,7 +21,7 @@ function zspd()
     }
     for (var a = 2;a <= zs / 2;a++)
     {
-        if (zs % a == 0)
+        if (zs % a === 0)
         {
             zsjg.innerHTML = "结果:" + zs + "是一个合数!" + "\n" + "它的因数除了1和它本身还有" + a + "!";
             return true;
@@ -31,3 +31,11 @@ function zspd()
     zsjg.innerHTML = "结果:" + zs + "是一个质数!";
     return true;
 }
+
+var qrtext = document.getElementById("qrtext");
+var qrsubmit = document.getElementById("qrsubmit");
+var qrwindow = document.getElementById("qrwindow");
+
+qrsubmit.addEventListener("click", function () {
+    qrwindow["src"] = "https://cli.im/api/qrcode/code?text=" + qrtext.value;
+});

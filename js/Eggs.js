@@ -1,7 +1,7 @@
 console.log('%c让编程改变世界.', 'color: #fff; background: #2ebb96; font-size: 24px;');
 
 Function.prototype.getMultiLine = function () {
-    var lines = new String(this);
+    var lines = String(this);
     lines = lines.substring(lines.indexOf("/*") + 3, lines.lastIndexOf("*/"));
     return lines;
 };

@@ -25,7 +25,7 @@
 <header>
     <ul class="dh">
         <li class="dh"><a href="index.html" >主页</a></li>
-        <li class="dh"><a href="programs.html" >小程序</a></li>
+        <li class="dh"><a href="#" >小程序</a></li>
         <li class="dh"><a href="download.html" >下载</a></li>
         <li class="dh"><a href="feedback.html" >反馈</a></li>
     </ul>
@@ -33,9 +33,14 @@
 <section>
     <h4 class="bold">质数判断:</h4>
     <p class="bold">
-        <input type="number" id="zssr">
+        <input type="number" id="zssr" size="10" maxlength="10">
     </p>
     <p class="fd" id="zsjg">结果:</p>
+    <h4 class="bold">二维码生成:（使用草料API)</h4>
+    <input id="qrtext" value="Apples">
+    <button id="qrsubmit">生成</button>
+    <br/>
+    <iframe src="https://cli.im/api/qrcode/code?text=Apples" width="1000px" height="500px" id="qrwindow"></iframe>
 </section>
 <script src="js/program.js"></script>
 </body>

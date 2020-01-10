@@ -5,7 +5,6 @@ body {
 ul{
     list-style-type: none;
     padding : 0;
-
 }
 
 li{
@@ -29,6 +28,19 @@ a:hover {
     text-decoration: underline;
 }
 
+header .mobile {
+    display: none;
+}
+
+@media screen and (max-width: 420px){
+    header .mobile {
+        display: inline-block;
+    }
+    header .desktop {
+        display: none;
+    }
+}
+
 footer {
     text-align: center;
 }
@@ -40,6 +52,7 @@ footer {
 
 section {
     margin-left: 0;
+    flex-wrap: warp;
 }
 
 .download {
@@ -49,7 +62,13 @@ section {
     margin-top: 20px;
 }
 
-.dh {
+header ul {
+    text-align: center;
+    font-size: 140%;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+header li {
     text-align: center;
     font-size: 140%;
     padding-left: 10px;
