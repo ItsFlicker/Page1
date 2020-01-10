@@ -36,6 +36,16 @@ var qrtext = document.getElementById("qrtext");
 var qrsubmit = document.getElementById("qrsubmit");
 var qrwindow = document.getElementById("qrwindow");
 
-qrsubmit.addEventListener("click", function () {
+function updateQR() {
     qrwindow["src"] = "https://cli.im/api/qrcode/code?text=" + qrtext.value;
-});
+}
+
+qrsubmit.addEventListener("click", updateQR);
+
+qrtext.addEventListener("keypress", qrKeypress);
+
+function qrKeypress(event) {
+    if(event.which === 13) {
+        updateQR.call();
+    }
+}
