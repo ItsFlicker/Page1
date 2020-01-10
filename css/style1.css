@@ -37,6 +37,7 @@ header .mobile {
         display: inline-block;
         margin: 0;
         flex-wrap: nowrap;
+        font-size: 50%;
     }
     #video {
         width: 95%;
