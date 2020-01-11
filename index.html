@@ -68,6 +68,7 @@
                     url: 'https://free-api.heweather.net/s6/weather/now',
                     data: parameter,
                     success: function (weather) {
+                        $weathershow.append("<li>当前地点:"+weather.HeWeather6[0].basic.location+"</li><br/>");
                         var now = weather.HeWeather6[0].now;
                         $weathershow.append("<li>当前温度:"+now.tmp+"摄氏度</li><br/>");
                         $weathershow.append("<li>体感温度:"+now.fl+"摄氏度</li><br/>");
