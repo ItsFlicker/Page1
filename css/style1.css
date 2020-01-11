@@ -37,6 +37,10 @@ header li {
     padding-right: 10px;
 }
 
+.fd {
+    font-size: 150%;
+    color: white;
+}
 
 @media screen and (max-width: 421px){
     body {
@@ -57,15 +61,10 @@ header li {
         width: 95%;
         height:240px;
     }
-}
-
-footer {
-    text-align: center;
-}
-
-.fd {
-    font-size: 150%;
-    color: white;
+    .fd {
+        font-size: 120%;
+        color: white;
+    }
 }
 
 section {
