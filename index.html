@@ -47,9 +47,61 @@
         <div class="fd">
             Python是一种计算机程序设计语言，是一种面向对象的动态类型语言，最初被设计用于编写自动化脚本(shell)。<br/>
             随着版本的不断更新和语言新功能的添加，越来越多被用于独立的、大型项目的开发。
-        </div>
+        </div><br/>
+        <h4 class="bold">天气查询:</h4>
+        <button id="getweather">查询当前城市天气</button>
+        <ul id="weathershow" class="fd"></ul>
     </section>
     <footer>
     </footer>
+    <script>
+        $(function () {
+            var $weathershow = $("#weathershow");
+            var parameter = {
+                location: 'auto_ip',
+                key: '216168dcbeeb4a9ba1dd70f153ac4463'
+            };
+
+            $("#getweather").on("click", function () {
+                $.ajax({
+                    type: 'GET',
+                    url: 'https://free-api.heweather.net/s6/weather/now',
+                    data: parameter,
+                    success: function (weather) {
+                        var now = weather.HeWeather6[0].now;
+                        $weathershow.append("<li>当前温度:"+now.tmp+"摄氏度</li><br/>");
+                        $weathershow.append("<li>体感温度:"+now.fl+"摄氏度</li><br/>");
+                        $weathershow.append("<li>当前天气状况:"+now.cond_txt+"</li><br/>");
+                        $weathershow.append("<li>当前风向:"+now.wind_dir+"</li><br/>");
+                        $weathershow.append("<li>当前风力:"+now.wind_sc+"级</li><br/>");
+                        $("#getweather").fadeOut();
+                        $weathershow.append("<button id='newbtn'>查询生活指数</button>");
+                        $("#newbtn").on("click", function () {
+                            var result = '';
+                            $.ajax({
+                                type: 'GET',
+                                url: 'https://free-api.heweather.net/s6/weather/lifestyle',
+                                data: parameter,
+                                success: function (life) {
+                                    var lifestyles = life.HeWeather6[0].lifestyle;
+                                    $.each(lifestyles, function (i, lifestyle) {
+                                        result += lifestyle.txt;
+                                    });
+                                    $("#newbtn").fadeOut();
+                                    $weathershow.append(result);
+                                },
+                                error: function () {
+                                    alert("获取失败，请稍后再试");
+                                }
+                            });
+                        })
+                    },
+                    error: function () {
+                        alert("获取失败，请稍后再试");
+                    }
+                });
+            });
+        })
+    </script>
 </body>
 </html>
