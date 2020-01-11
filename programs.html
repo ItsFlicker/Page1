@@ -37,10 +37,15 @@
     </p>
     <p class="fd" id="zsjg">结果:</p>
     <h4 class="bold">二维码生成:（使用草料API)</h4>
-    <input id="qrtext" value="Apples">
+    <input id="qrtext">
     <button id="qrsubmit">生成</button>
     <br/>
-    <iframe src="https://cli.im/api/qrcode/code?text=Apples" width="1000px" height="500px" id="qrwindow" frameborder="0"></iframe>
+    <iframe src="https://cli.im/api/qrcode/code?text=" width="1000px" height="500px" id="qrwindow" frameborder="0" class="hide"></iframe>
+    <h4 class="bold">谷歌翻译：</h4>
+    <textarea style="width: 200px;height: 100px; " id="fanyitext"></textarea><br/>
+    <button id="fanyisubmit">翻译</button>
+    <button id="fanyiclear" onclick="document.getElementById('fanyitext').value='';">清空</button><br/>
+    <p id="fanyiresult"></p>
 </section>
 <script src="js/program.js"></script>
 </body>
