@@ -50,13 +50,20 @@
         </div><br/>
         <h4 class="fd">天气查询:</h4>
         <button id="getweather">查询当前城市天气</button>
-        <ul id="weathershow" class="fd"></ul>
+        <div id="weathershow" style="text-align: center;color: white;">
+            <p id="ws-one" style="font-size: 150%"></p>
+            <p id="ws-two" style="font-size: 100%"></p>
+            <p id="ws-three" style="font-size: 100%"></p><br/>
+            <p id="ws-four" style="margin-top: 5px"></p>
+            <ul id="ws-five" class="fd"></ul>
+        </div>
     </section>
     <footer>
     </footer>
     <script>
         $(function () {
             var $weathershow = $("#weathershow");
+            $weathershow.hide();
             var parameter = {
                 location: 'auto_ip',
                 key: '216168dcbeeb4a9ba1dd70f153ac4463'
@@ -67,38 +74,33 @@
                     type: 'GET',
                     url: 'https://free-api.heweather.net/s6/weather/now',
                     data: parameter,
-                    success: function (weather) {
-                        $weathershow.append("<li>当前地点:"+weather.HeWeather6[0].basic.location+"</li><br/>");
-                        var now = weather.HeWeather6[0].now;
-                        $weathershow.append("<li>当前温度:"+now.tmp+"摄氏度</li><br/>");
-                        $weathershow.append("<li>体感温度:"+now.fl+"摄氏度</li><br/>");
-                        $weathershow.append("<li>当前天气状况:"+now.cond_txt+"</li><br/>");
-                        $weathershow.append("<li>当前风向:"+now.wind_dir+"</li><br/>");
-                        $weathershow.append("<li>当前风力:"+now.wind_sc+"级</li><br/>");
-                        $("#getweather").fadeOut();
-                        $weathershow.append("<button id='newbtn'>查询生活指数</button>");
-                        $("#newbtn").on("click", function () {
-                            var result = '';
-                            $.ajax({
-                                type: 'GET',
-                                url: 'https://free-api.heweather.net/s6/weather/lifestyle',
-                                data: parameter,
-                                success: function (life) {
-                                    var lifestyles = life.HeWeather6[0].lifestyle;
-                                    $.each(lifestyles, function (i, lifestyle) {
-                                        result += lifestyle.txt;
-                                    });
-                                    $("#newbtn").fadeOut();
-                                    $weathershow.append(result);
-                                },
-                                error: function () {
-                                    alert("获取失败，请稍后再试");
-                                }
-                            });
-                        })
+                    success: function (weathern) {
+                        $.ajax({
+                            type: 'GET',
+                            url: 'https://free-api.heweather.net/s6/weather/forecast',
+                            data: parameter,
+                            success: function (weatherf) {
+                                $weathershow.show();
+                                var now = weathern.HeWeather6[0].now;
+                                var forecast = weatherf.HeWeather6[0].daily_forecast;
+                                $("#ws-one").html(now.tmp+"℃");
+                                $("#ws-two").html(forecast[0].tmp_max+"℃/"+forecast[0].tmp_min+"℃");
+                                $("#ws-three").html(now.cond_txt+" 风力"+now.wind_sc+"级");
+                                $("#ws-four").html(weathern.HeWeather6[0].basic.location);
+                                $.each(forecast, function (i, day) {
+                                    $("#ws-five").append("<li>"+day.date+"  "+day.cond_txt_d+"  "+day.tmp_max+"℃/"+day.tmp_min+"℃</li><br/>")
+                                });
+                                $("#getweather").fadeOut();
+                            },
+                            error: function () {
+                                alert("获取失败，请稍后再试");
+                                $("#getweather").fadeOut();
+                            }
+                        });
                     },
                     error: function () {
                         alert("获取失败，请稍后再试");
+                        $("#getweather").fadeOut();
                     }
                 });
             });
