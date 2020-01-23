@@ -120,6 +120,7 @@ $(function () {
     var $bdupload = $("#bdupload");
     var $bdinfo = $("#bdinfo");
     var $bdresult = $("#bdresult");
+    var $bdbar = $("#bd")
 
     $bdupload.on("click", bdupload);
 
@@ -141,45 +142,44 @@ $(function () {
 
         $(".progress").show();
 
-        var reader = new FileReader(fs);
+        var xhr = new XMLHttpRequest();
+        xhr.open('post', "https://s.threatbook.cn/api/v2/file/upload", true);
 
-        reader.onprogress = function (e) {
-            $bdinfo.css("width", e.loaded/e.total*200+"px");
-            $bdresult.text(Math.round((e.loaded/e.total*200)*0.5)+"%");
+        xhr.onreadystatechange=function (){
+        //readystate为4表示请求已完成并就绪
+            if(this.readyState===4){
+                result = JSON.parse(this.response);
+                if(result.response_code === 0){
+                    $(".progress").hide();
+                    $bdresult.hide();
+                    $bdshow.css("display", "unset");
+                    $bdshow.attr("src", result.permalink);
+                }
+                else{
+                    $bdfile.show();
+                    $bdupload.show();
+                    $(".progress").hide();
+                    $bdresult.hide();
+                    alert("错误代码:", result.msg);
+                    return false;
+                }
+            }
         };
 
-        reader.onload = function () {
+        xhr.upload.onprogress=function (ev){
+            if(ev.lengthComputable){
+                var precent=100 * ev.loaded/ev.total;
+                $bdinfo.css("width", precent+'%');
+                $bdresult.text(Math.floor(precent)+'%');
+            }
+        };
+
             var formData = new FormData();
             formData.append("file", fs);
             formData.append("apikey", "121c1cebba784212ae641e0e6ea86fff301baeb43adb4248b3def52eff102f24");
             formData.append("run_time", 120);
             formData.append("sandbox_type", "win7_sp1_enx86_office2013");
 
-            $.ajax({
-                type: "POST",
-                url: "https://s.threatbook.cn/api/v2/file/upload",
-                data: formData,
-                processData : false,
-                contentType : false,
-                success: function (result) {
-                    if (result.response_code === 0) {
-                        $bdshow.css("display", "unset");
-                        $bdshow.attr("src", result.permalink);
-                    } else {
-                        $bdfile.show();
-                        $bdupload.show();
-                        alert("*支持的文件类型包括：PE 可执行文件(EXE、DLL、COM 等)，Office 文档(DOC、XLS、PPT 等)，PDF，HTML，Script，MSI，SWF，JAR，LNK ，ELF，各种压缩包(ZIP、RAR、7Z 等)。");
-                        return false;
-                    }
-                },
-                error: function () {
-                    alert("上传失败，请稍后再试！");
-                    $bdfile.show();
-                    $bdupload.show();
-                }
-            });
-        };
-
-        reader.readAsDataURL(fs);
+            xhr.send(formData)
     }
 });
