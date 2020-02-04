@@ -22,7 +22,7 @@
         window.location.href = url;
         }
     }
-    var text = GetQueryString("text");
+    var text = GetQueryString("text").replace(/%3A/, ":");
     CheckUrl(text);
     document.write(text);
 </script>
