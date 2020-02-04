@@ -13,17 +13,8 @@
     function GetQueryString(name) {
         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
         var r = window.location.search.substr(1).match(reg);
-        if(r != null) return decodeURI(r[2]);
-        return "无内容";
+        if(r!=null)return  unescape(r[2]); return "无内容";
     }
-    function CheckUrl(url){
-        var reg=/^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
-        if(reg.test(url)){
-        window.location.href = url;
-        }
-    }
-    var text = GetQueryString("text").replace(/%3A/, ":");
-    CheckUrl(text);
-    document.write(text);
+    document.write(GetQueryString("text"))
 </script>
 </html>
