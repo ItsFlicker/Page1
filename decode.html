@@ -16,6 +16,14 @@
         if(r != null) return decodeURI(r[2]);
         return "无内容";
     }
-    document.write(GetQueryString("text"))
+    function CheckUrl(url){
+        var reg=/^([hH][tT]{2}[pP]:\/\/|[hH][tT]{2}[pP][sS]:\/\/)(([A-Za-z0-9-~]+)\.)+([A-Za-z0-9-~\/])+$/;
+        if(reg.test(url)){
+        window.location.href = url;
+        }
+    }
+    var text = GetQueryString("text");
+    CheckUrl(text);
+    document.write(text);
 </script>
 </html>
