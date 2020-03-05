@@ -29,7 +29,7 @@
                     data: parameter,
                     success: function(data){
                         console.log(data)
-                        if(data["code"] = 0 ){
+                        if(data["code"] = "0" ){
                         $show.attr("src", data["data"][0]["url"])
                         $text.append("<li>作者uid:"+data["data"][0]["uid"]+"</li>")
                         $text.append("<li>图片pid:"+data["data"][0]["pid"]+"</li>")
