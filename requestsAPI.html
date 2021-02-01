@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="js/jquery-3.4.1.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>二维码内容</title>
+</head>
+<body>
+</body>
+<script type="text/javascript">
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r != null) return r[2];
+        return null;
+    }
+
+    var url = GetQueryString("url");
+    var type = GetQueryString("type");
+    var parameter = GetQueryString("parameter");
+
+    if (url == null){
+    	document.write("error")
+    };
+
+    if (type == null){
+    	type = "GET"
+    };
+
+    if (parameter == null){
+    	parameter = {}
+    };
+
+    $(function() {
+    	$.ajax({
+    		type: type,
+    		url: url,
+    		data: parameter,
+    		success: function (value){
+    			document.write(value)
+    		}
+    		error: function (){
+    			document.write("error")
+    		}
+    	});
+    })
+</script>
+</html>
